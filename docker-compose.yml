@@ -1,0 +1,14 @@
+services:
+  expense-bot:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Монтируем data/ с хоста — данные xlsx живут на сервере, не внутри контейнера
+      - ./data:/app/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
