@@ -26,4 +26,8 @@ async def handle_list(message: Message) -> None:
             line += f"\n       💬 {exp['comment']}"
         lines.append(line)
 
+    # Подсчёт общей суммы
+    total = sum(exp['amount'] for exp in expenses)
+    lines.append(f"\n💰 <b>Итого: {total:.2f} руб.</b>")
+
     await message.answer("\n".join(lines), parse_mode="HTML")
